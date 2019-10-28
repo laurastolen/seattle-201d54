@@ -1,0 +1,9 @@
+HTML -> structure
+tags
+<banana>
+
+</banana>
+
+
+CSS -> style 
+JS -> Behavior
