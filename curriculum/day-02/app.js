@@ -1,6 +1,42 @@
 'use strict';
 
-var doesUserLikePizza = confirm('Do you like Pizza?');
+// Vinicio - function declaration
+function askUserIfTheyLikePizza() {
+  var doesUserLikePizza = confirm('Do you like Pizza?');
+}
+
+function askUserForANumber() {
+  var number = prompt("Give me a number");
+  number = parseInt(number);
+  
+  return number;
+}
+
+
+function tellTheUserAMessage(message, numberToSend) {
+  alert(message);
+  numberToSend++;
+  console.log(numberToSend);
+  numberToSend += 10;
+  alert(numberToSend);
+
+  return numberToSend;
+}
+
+var response = tellTheUserAMessage("Banana",5);
+console.log(response);
+
+
+// var number = askUserForANumber();
+// console.log(number);
+
+//console.log(askUserForANumber());
+
+// Vinicio - function execution
+//askUserIfTheyLikePizza();
+
+
+
 
 // If the user likes pizza. he/she has to buy me some. If not, they have to go away from my sight
 
@@ -10,25 +46,24 @@ var doesUserLikePizza = confirm('Do you like Pizza?');
 //   console.log('oh.. :(');
 // }
 
-var name = prompt('What is your name');
+// var name = prompt('What is your name');
 
-if (name === 'kali') {
+// if (name === 'kali') {
 
-  console.log('You are the best doggo!');
+//   console.log('You are the best doggo!');
 
-} else if(name === 'ginger'){
+// } else if(name === 'ginger'){
 
-  console.log('You are the second best doggo! (almost as cute as kali though)');
+//   console.log('You are the second best doggo! (almost as cute as kali though)');
 
-} else if(doesUserLikePizza === true) {
+// } else if(doesUserLikePizza === true) {
 
-  console.log('Great. Buy me some artesanal pizza');
+//   console.log('Great. Buy me some artesanal pizza');
 
- } else {
+//  } else {
 
-  console.log('oh.. :(');
-
- }
+//   console.log('oh.. :(');
+//  }
 
 // Vinicio - this will be a separate chain from next if
 // if (name === 'kali') {
@@ -44,22 +79,4 @@ if (name === 'kali') {
 //  } else {
 //   console.log('oh.. :(');
 //  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-var names = ['Jon', 'Dany', 'Robert', 'Jorah'];
-
-
-
-
-
+// var names = ['Jon', 'Dany', 'Robert', 'Jorah'];
