@@ -74,6 +74,9 @@ var tableReference = document.getElementById('dog-table');
 renderDaysOfTheWeek(tableReference);
 
 
-// Render the days of the week
-// Render the dogs name and its barks in the same rowe
-// go to the next dog
+
+
+
+// I want something to happen WHEN the users clicks my button
+
+// Chrome will call something we know as en event whenever SOMETHING happens
