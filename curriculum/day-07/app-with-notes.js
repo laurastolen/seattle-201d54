@@ -38,7 +38,7 @@ var animals = [kali, khal, ginger, gregor];
 
 
 // Vinicio - this function is calculating vertical totals
-function calculateDailyTotals(animals) {
+function calculateAndRenderTotals(animals) {
   for(var barkIndex = 0; barkIndex < animals[0].barksPerWeek.length; barkIndex++) {
     var total = 0;
     for(var animalIndex = 0; animalIndex < animals.length; animalIndex++) {
@@ -68,7 +68,7 @@ function cleanScreenAndRenderAll(){
   var tableReference = document.getElementById('dog-table');
   tableReference.innerHTML = "";
   renderDaysOfTheWeek(tableReference);
-  calculateDailyTotals(animals);
+  calculateAndRenderTotals(animals);
 
   for(var animalIndex = 0; animalIndex < animals.length; animalIndex++) {
     var currentAnimal = animals[animalIndex];
