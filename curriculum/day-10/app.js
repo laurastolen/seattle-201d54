@@ -115,3 +115,32 @@
 // console.log(pizza);
 // pizza = 'is yummy';
 // -----------------------------------------------------
+
+
+
+function Cookie(name) {
+  // Vinicio - hoisting happens when you try to do
+  // perform 'complex behavior' INSIDE a constructor
+  this.yummy = true;
+  this.name = name;
+
+  this.test = function() {
+
+  }
+  this.eat =  function() {
+    this.test();
+  }
+
+  this.render = function() {
+    this.eat();
+    this.test();
+  }
+  // Vinicio - here is where you can try to do complicated work
+  // Vinicio - after you have defined all the members
+  // complicated - anything that's not just defining a member
+}
+
+
+
+var c1 = new Cookie();
+c1.eat();
