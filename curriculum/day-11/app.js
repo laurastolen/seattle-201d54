@@ -8,6 +8,8 @@
 // 5
 var goatStorage = [];
 var randomGoats = [];
+var clickCounter = 0;
+var MAX_CLICK_COUNTER = 10;
 
 function getRandomGoatIndex() {
   return Math.floor(Math.random() * (goatStorage.length));
@@ -65,19 +67,25 @@ var kissingGoat = new Goat('Kissing Goat', './images/kissing-goat.jpg')
 
 
 function clickManager (event) {
-  alert(event.target.id);
-  var goatIndex;
+  clickCounter++;
+  if(clickCounter < MAX_CLICK_COUNTER) {
+    var goatIndex;
 
-  if(event.target.id === 'placeholder-0') {
-    goatIndex = 0;
-  } else if (event.target.id === 'placeholder-1') {
-    goatIndex = 1;
+    if(event.target.id === 'placeholder-0') {
+      goatIndex = 0;
+    } else if (event.target.id === 'placeholder-1') {
+      goatIndex = 1;
+    } else {
+      goatIndex = 2;
+    }
+    var clickedGoat = goatStorage[randomGoats[goatIndex]];
+    clickedGoat.markClick();
+
+    select3GoatsAndRender();
   } else {
-    goatIndex = 2;
+    alert('game over');
   }
-  var clickedGoat = goatStorage[randomGoats[goatIndex]];
-  clickedGoat.markClick();
-  alert(`You have clicked on ${clickedGoat.name}`);
+
 
 
   // I know the id of the clicked picture
