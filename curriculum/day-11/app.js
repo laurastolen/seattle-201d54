@@ -83,7 +83,7 @@ function clickManager (event) {
 
     select3GoatsAndRender();
   } else {
-    alert('game over');
+    createGoatChart();
   }
 
 
@@ -130,18 +130,45 @@ placeholder2.addEventListener('click', clickManager);
     // Check that the number is unique
   // Render the 3 pictures in the slot
 
+function createGoatChart() {
+  var nameArray = [];
+  var clickArray = [];
+
+  for(var i = 0; i < goatStorage.length; i++) {
+    nameArray.push(goatStorage[i].name);
+    clickArray.push(goatStorage[i].timesClicked);
+  }
 
 
-
-
-
-
-
-
-
-
-
-
-
- 
-
+  // vinicio - I want to draw 2d graphics into this canvas
+  var context = document.getElementById('chart').getContext('2d');
+  var goatChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: nameArray,
+      datasets: [
+        {
+          label: 'Goat Clicks',
+          data: clickArray,
+          backgroundColor: 'rgb(255,99,132)',
+          borderColor: 'rgb(255,99,132)',
+        },
+        {
+          label: 'Goat Clicks',
+          data: clickArray,
+        }
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            }
+          },
+        ],
+      }
+    },
+  });
+}
