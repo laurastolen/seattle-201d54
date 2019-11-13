@@ -6,6 +6,10 @@
 // 2.5
 
 // 5
+localStorage.setItem('user', 'kali');
+localStorage.setItem('userIsCute', 'true');
+var GOAT_DATA = 'goatData';
+
 var goatStorage = [];
 var randomGoats = [];
 var clickCounter = 0;
@@ -47,23 +51,58 @@ function select3GoatsAndRender() {
 var Goat = function(name, picture) {
   this.name = name;
   this.picture = picture;
+  // -----------------------------------------------------------------------------------
+  // This information is what you want to preserve. It'll be absolutely lost
+  // -----------------------------------------------------------------------------------
   this.timesClicked = 0;
-  this.timesShown = 0; // hint hint ;). You may need to use this for your app ;)
+  this.timesShown = 0; 
+  // -----------------------------------------------------------------------------------
 
   this.markClick = function() {
     this.timesClicked++;
   }
 
   this.render = function(domReference) {
-    domReference.src = picture;
+    domReference.src = this.picture;
   }
-  goatStorage.push(this);
+
+  this.loadData = function(data) {
+    // Vinicio - JSON data has to be a pre-parsed object
+    this.timesClicked = data.timesClicked;
+    this.timesShown = data.timesShown;
+
+    // Vinicio - we don't have to do this, but I think it's safer to restore everything
+    this.name = data.name;
+    this.picture = data.picture;
+  }
 }
 
-var sweaterGoat = new Goat('Sweater Goat', './images/sweater-goat.jpg');
-var cruisingGoat = new Goat('Cruising Goat', './images/cruisin-goat.jpg')
-var floatYourGoat = new Goat('Float your Goat', './images/float-your-goat.jpg')
-var kissingGoat = new Goat('Kissing Goat', './images/kissing-goat.jpg')
+// ----------------------------------------------------------------------
+// LOCAL STORAGE
+// ----------------------------------------------------------------------
+// Vinicio - this is what should happen if we don't have anything in local storage
+if(localStorage.getItem(GOAT_DATA) === null) {
+  // Vinicio - if there is nothing in local storage, we need to create the goats like normal
+  var sweaterGoat = new Goat('Sweater Goat', './images/sweater-goat.jpg');
+  var cruisingGoat = new Goat('Cruising Goat', './images/cruisin-goat.jpg')
+  var floatYourGoat = new Goat('Float your Goat', './images/float-your-goat.jpg')
+  var kissingGoat = new Goat('Kissing Goat', './images/kissing-goat.jpg')
+
+  goatStorage.push(sweaterGoat);
+  goatStorage.push(cruisingGoat);
+  goatStorage.push(floatYourGoat);
+  goatStorage.push(kissingGoat);
+} else {
+  var jsonData = localStorage.getItem(GOAT_DATA);
+  var data = JSON.parse(jsonData);
+
+  for(var i = 0; i < data.length; i++) {
+    var newGoat = new Goat('','');
+
+    newGoat.loadData(data[i]);
+    goatStorage.push(newGoat);
+  }
+}
 
 
 function clickManager (event) {
@@ -83,7 +122,15 @@ function clickManager (event) {
 
     select3GoatsAndRender();
   } else {
+    // Biggest change of the day
+    saveGoatDataToLocalStorage();
     createGoatChart();
+  }
+
+  function saveGoatDataToLocalStorage() {
+    var jsonData = JSON.stringify(goatStorage);
+    // Vinicio - this is the line that's putting things into local storage
+    localStorage.setItem(GOAT_DATA, jsonData);
   }
 
 
